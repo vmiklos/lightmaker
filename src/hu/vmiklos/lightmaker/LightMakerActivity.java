@@ -29,6 +29,9 @@ package hu.vmiklos.lightmaker;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -45,9 +48,18 @@ public class LightMakerActivity extends Activity {
         WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
         layoutParams.screenBrightness = 1;
 
+        // set color
         TextView tv = new TextView(this);
-        // argb white
-        tv.setBackgroundColor(0xffffffff);
+        tv.setBackgroundColor(0xffffffff); // argb white
+        
+        // quit on touch
+        tv.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				finish();
+				return false;
+			}
+		});
+        
         setContentView(tv);
     }
 }
