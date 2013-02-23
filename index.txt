@@ -1,0 +1,12 @@
+= Lightmaker
+
+I created this Android app, as I wanted a flashlight app, with the following requirements:
+
+- free software, no ads
+- can be placed on home screen, and I get the flashlight with one touch (that's
+  what
+  https://play.google.com/store/apps/details?id=com.digital_and_dreams.android.swiss_army_knife[Swiss
+  Army Knife] doesn't provide)
+
+- http://vmiklos.hu/lightmaker/downloads/LightMaker-1.1.apk[LightMaker-1.1.apk]
+- https://github.com/vmiklos/lightmaker[Git repo]
