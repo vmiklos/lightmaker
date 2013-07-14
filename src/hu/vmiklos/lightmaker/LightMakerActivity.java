@@ -29,14 +29,38 @@ package hu.vmiklos.lightmaker;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 public class LightMakerActivity extends Activity {
+	
+	class GestureListener extends GestureDetector.SimpleOnGestureListener
+	{
+		@Override
+		public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY)
+		{
+			if (event1.getX() - event2.getX() > 120)
+			{
+				m_viewFlipper.showNext();
+				return true;
+			}
+			else if (event2.getX() - event1.getX() > 120)
+			{
+				m_viewFlipper.showPrevious();
+				return true;
+			}
+			return false;
+		}
+	}
+	
 	@Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -49,17 +73,35 @@ public class LightMakerActivity extends Activity {
         layoutParams.screenBrightness = 1;
 
         // set color
-        TextView tv = new TextView(this);
-        tv.setBackgroundColor(0xffffffff); // argb white
+        //TextView tv = new TextView(this);
+        //tv.setBackgroundColor(0xffffffff); // argb white
         
         // quit on touch
-        tv.setOnTouchListener(new OnTouchListener() {
+        /*tv.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				finish();
 				return false;
 			}
 		});
         
-        setContentView(tv);
+        setContentView(tv);*/
+        ImageView imageView1 = new ImageView(this);
+        imageView1.setImageResource(R.drawable.test1);
+        ImageView imageView2 = new ImageView(this);
+        imageView2.setImageResource(R.drawable.test2);
+        m_viewFlipper = new ViewFlipper(this);
+        m_viewFlipper.addView(imageView1);
+        m_viewFlipper.addView(imageView2);
+        setContentView(m_viewFlipper);
+        m_gestureDetector = new GestureDetector(this, new GestureListener());
     }
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event)
+	{
+		return m_gestureDetector.onTouchEvent(event);
+	}
+	
+	public ViewFlipper m_viewFlipper;
+	private GestureDetector m_gestureDetector;
 }
