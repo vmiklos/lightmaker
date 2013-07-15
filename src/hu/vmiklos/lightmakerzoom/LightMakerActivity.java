@@ -25,19 +25,14 @@
  * instead of those above.
  */
 
-package hu.vmiklos.lightmaker;
+package hu.vmiklos.lightmakerzoom;
 
+import hu.vmiklos.lightmakerzoom.R;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class LightMakerActivity extends Activity {
@@ -64,27 +59,6 @@ public class LightMakerActivity extends Activity {
 	@Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        // fullscreen
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // brightness
-        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-        layoutParams.screenBrightness = 1;
-
-        // set color
-        //TextView tv = new TextView(this);
-        //tv.setBackgroundColor(0xffffffff); // argb white
-        
-        // quit on touch
-        /*tv.setOnTouchListener(new OnTouchListener() {
-			public boolean onTouch(View v, MotionEvent event) {
-				finish();
-				return false;
-			}
-		});
-        
-        setContentView(tv);*/
         ImageView imageView1 = new ImageView(this);
         imageView1.setImageResource(R.drawable.test1);
         ImageView imageView2 = new ImageView(this);
